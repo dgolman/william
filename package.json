@@ -1,0 +1,11 @@
+{
+	"name" : "myScraper",
+	"version": "0.0.1",
+	"description": "Scraping the web",
+	"dependencies": {
+	"express" : "latest",
+	"request" : "latest",
+	"cheerio" : "latest"
+
+	}
+}
