@@ -31,63 +31,57 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+//Glassdoor endpoint
+app.get('/glassdoor', function(req,res){
 
-app.get('/scrape', function(req, res))
-{
-	url = "http://www.styleweekly.com/richmond/2014rvaburgerweek/page"
-	request(url, function(error, response, html){
-		if(!error){
-			var $ = cheerio.load(html);
-		}
-	})
-}
+})
+//CapTech website endpoint
+app.get('/captech', function(req,res){
+
+})
+//Twitter endpoint
+app.get('/twitter', function(req,res){
+
+})
 /*
 app.get('/scrape', function(req, res){
 
-	url = 'http://www.imdb.com/title/tt1229340/';
+
+	url = 'https://www.apple.com/itunes/charts/songs/';
 
 	request(url, function(error, response, html){
 		if(!error){
+
 			var $ = cheerio.load(html);
 
-			var title, release, rating;
-			var json = { title : "", release : "", rating : ""};
+			var songs = [];
+			var json = {rank:"", art:"", name:"",artist:"" };
+			$('.section grid').filter(function(){
+				var data = $(this);
+				var song = {};
+			});
 
-			$('.header').filter(function(){
+			$('#storyBody table').eq(1).find('.contentImageCenter').each(function(i, element){
 		        var data = $(this);
-		        title = data.children().first().text();            
-                release = data.children().last().children().text();
+		        var restaurant = {};
+		        restaurant.logo = "http://www.styleweekly.com" + data.children().first().attr("src");
+		        restaurant.name = data.children().first().text();            
+                restaurant.burger = data.children().last().children().text();
+                restaurant.address = data.text();
 
-		        json.title = title;
-                json.release = release;
-	        })
-
-            $('.star-box-giga-star').filter(function(){
-	        	var data = $(this);
-	        	rating = data.text();
-
-	        	json.rating = rating;
-	        })
+                restaurants.push(restaurant);
+	        });
 		}
-        // To write to the system we will use the built in 'fs' library.
-        // In this example we will pass 3 parameters to the writeFile function
-        // Parameter 1 :  output.json - this is what the created filename will be called
-        // Parameter 2 :  JSON.stringify(json, null, 4) - the data to write, here we do an extra step by calling JSON.stringify to make our JSON easier to read
-        // Parameter 3 :  callback function - a callback function to let us know the status of our function
 
-        fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-
-        	console.log('File successfully written! - Check your project directory for the output.json file');
-
-        })
 
         // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-        res.send([title, release, rating])
         res.send([json])
+        // send to browser
+        res.send(restaurants);
+
 	})
 })
 */
-
 
 
 var server = app.listen('8081');
