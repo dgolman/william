@@ -31,19 +31,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-//Glassdoor endpoint
-app.get('/glassdoor', function(req,res){
 
-})
-//CapTech website endpoint
-app.get('/captech', function(req,res){
-
-})
-//Twitter endpoint
-app.get('/twitter', function(req,res){
-
-})
-/*
 app.get('/scrape', function(req, res){
 
 
@@ -81,7 +69,7 @@ app.get('/scrape', function(req, res){
 
 	})
 })
-*/
+
 
 
 var server = app.listen('8081');
