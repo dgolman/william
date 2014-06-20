@@ -1,2 +1,7 @@
-
-		{{maps.results[0].geometry.location}}
+<div ng-repeat="restaurant in restaurants">
+	<img src="{{restaurant.logo}}">
+	<p>{{restaurant.name}}</p>
+	<p>{{restaurant.burger}}</p>
+	<p>{{restaurant.contact}}</p>
+	<p>{{restaurant.distance}}</p>
+</div>
