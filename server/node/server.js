@@ -10,6 +10,7 @@ app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
 
+
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -20,12 +21,29 @@ app.use(function (req, res, next) {
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
 
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
     // Pass to next layer of middleware
     next();
 });
 
+app.get('/scrape', function(req, res))
+{
+	url = "http://www.styleweekly.com/richmond/2014rvaburgerweek/page"
+	request(url, function(error, response, html){
+		if(!error){
+			var $ = cheerio.load(html);
+		}
+	})
+}
+/*
 app.get('/scrape', function(req, res){
-	
+
 	url = 'http://www.imdb.com/title/tt1229340/';
 
 	request(url, function(error, response, html){
@@ -65,8 +83,10 @@ app.get('/scrape', function(req, res){
 
         // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
         res.send([title, release, rating])
+        res.send([json])
 	})
 })
+*/
 
 
 
