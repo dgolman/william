@@ -1,4 +1,4 @@
-<div ng-repeat="restaurant in restaurants">
+<div ng-repeat="restaurant in restaurants track by $index | orderBy:'distance'">
 	<img src="{{restaurant.logo}}">
 	<p>{{restaurant.name}}</p>
 	<p>{{restaurant.burger}}</p>
